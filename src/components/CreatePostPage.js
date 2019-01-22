@@ -30,6 +30,7 @@ export class CreatePostPage extends React.Component {
             body: this.state.body
         };
         this.props.addPost(post);
+        this.props.history.push('/dashboard');
     };
 
     render() {

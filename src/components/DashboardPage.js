@@ -27,7 +27,7 @@ export const DashboardPage = (props) => (
                     <span>No posts</span>
                 </div>
             ) : (
-                props.posts.map((post) => <p>{post.title}</p>)
+                props.posts.map((post) => <p key={post.id}><Link to={`/edit/${post.id}`}>{post.title}</Link></p>)
             )}
         </div>
 
