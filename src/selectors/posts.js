@@ -2,7 +2,7 @@
 //import moment from 'moment';
 //apply the filters to the posts array
 //each post has title and body properties
-
+//startdate and enddate, if implemented, would go inside paramters of the function
 export default (posts, {text, sortBy}) => { 
     return posts.filter((post) => {
         /*const createdAtMoment = moment(expense.createdAt);

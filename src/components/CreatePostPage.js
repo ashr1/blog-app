@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
+import moment from 'moment';
 import {addPost} from '../actions/post';
 
 export class CreatePostPage extends React.Component {
@@ -8,7 +9,8 @@ export class CreatePostPage extends React.Component {
         super(props);
         this.state = {
             title: '',
-            body: ''
+            body: '',
+            createdAt: moment()
         };
     };
     onTitleChange = (e) => {
@@ -27,7 +29,8 @@ export class CreatePostPage extends React.Component {
         //need to dispatch  
         const post = {
             title: this.state.title,
-            body: this.state.body
+            body: this.state.body,
+            createdAt: this.state.createdAt.valueOf()
         };
         this.props.addPost(post);
         this.props.history.push('/dashboard');
