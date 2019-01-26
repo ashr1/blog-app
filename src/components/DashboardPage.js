@@ -2,6 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {setTextFilter, setSortByTitle, setSortByDate} from '../actions/filters';
+import selectedPosts from '../selectors/posts';
 
 export class DashboardPage extends React.Component {
     constructor(props) {
@@ -73,7 +74,8 @@ const mapDispatchToProps = (dispatch) => ({
 
 const mapStateToProps = (state, props) => {
     return {
-        posts: state.post,
+        posts: selectedPosts(state.post, state.filters),
+        //posts: state.post,
         filters: state.filters
     };
 };  
