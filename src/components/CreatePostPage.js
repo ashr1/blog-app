@@ -30,7 +30,7 @@ export class CreatePostPage extends React.Component {
         const post = {
             title: this.state.title,
             body: this.state.body,
-            createdAt: this.state.createdAt.valueOf()
+            createdAt: this.state.createdAt
         };
         this.props.addPost(post);
         this.props.history.push('/dashboard');

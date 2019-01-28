@@ -1,16 +1,27 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {setTextFilter, setSortByTitle, setSortByDate} from '../actions/filters';
+import moment from 'moment';
+import {DateRangePicker} from 'react-dates';
+import {setTextFilter, setSortByTitle, setSortByDate, setStartDate, setEndDate} from '../actions/filters';
 import selectedPosts from '../selectors/posts';
 
 export class DashboardPage extends React.Component {
     constructor(props) {
         super(props);
-        /*this.state = {
-            title: '',
-            body: ''
-        };*/
+        this.state = {
+            calendarFocused: null
+        };
+    };
+
+    onDatesChange = ({startDate, endDate}) => {
+        //this.props.dispatch(setStartDate(startDate));
+        this.props.setStartDate(startDate);
+        //this.props.dispatch(setEndDate(endDate));
+        this.props.setEndDate(endDate);
+    };
+    onFocusChange=(calendarFocused) => {
+        this.setState(() => ({calendarFocused}));
     };
 
    onTextChange = (e) => {
@@ -46,6 +57,17 @@ export class DashboardPage extends React.Component {
                             <option value="title">By Title</option>
                             <option value="date">Date</option>
                         </select>
+                        
+<DateRangePicker 
+startDate={this.props.filters.startDate}
+endDate={this.props.filters.endDate}
+onDatesChange={this.onDatesChange}
+focusedInput={this.state.calendarFocused}
+onFocusChange={this.onFocusChange}
+showClearDates={true}
+numberOfMonths={1}
+isOutsideRange={() => false}
+/>
                         <Link  to="/create"><button>Add Post</button></Link>
             
         </div>
@@ -70,6 +92,8 @@ const mapDispatchToProps = (dispatch) => ({
     setTextFilter: (text) => dispatch(setTextFilter(text)),
     setSortByTitle: () => dispatch(setSortByTitle()),
     setSortByDate: () => dispatch(setSortByDate()),
+    setStartDate: (startDate) => dispatch(setStartDate(startDate)),
+    setEndDate: (endDate) => dispatch(setEndDate(endDate))
 });
 
 const mapStateToProps = (state, props) => {

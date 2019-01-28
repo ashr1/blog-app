@@ -1,6 +1,10 @@
+import moment from 'moment';
+
 const filtersReducerDefaultState = {
     sortBy: 'title',
-    text: ''
+    text: '',
+    startDate: moment().startOf('month'),
+    endDate: moment().endOf('month')
 };
 
 export default (state=filtersReducerDefaultState, action) => {
@@ -12,6 +16,10 @@ export default (state=filtersReducerDefaultState, action) => {
             return {...state, sortBy: 'title'};
         case 'SORT_BY_DATE':
             return {...state, sortBy: 'date'};
+        case 'SET_START_DATE':
+            return {...state, startDate: action.startDate};
+        case 'SET_END_DATE':
+            return {...state, endDate: action.endDate};
         default:
             return state;
     }
