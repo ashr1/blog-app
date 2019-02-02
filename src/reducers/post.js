@@ -5,7 +5,8 @@ export default (state=postsReducerDefaultState, action) => {
     switch(action.type) {
         case 'ADD_POST':
             console.log(action);
-            const newpost = {...action.post, id: action.id};
+            //const newpost = {...action.post, id: action.id};
+            const newpost = {...action.post};
             return [...state, newpost];
         case 'EDIT_POST':
         //need array without the expense and need the expense, id 

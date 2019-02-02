@@ -38,10 +38,10 @@ export class DashboardPage extends React.Component {
             this.props.setSortByTitle();
         }
     };
-
+    
     render() {
         return (
-            <div className="content-container">
+           <div className="content-container">
         <div>
             <input
                 type="text"

@@ -13,19 +13,19 @@ const config = {
 
   const database = firebase.database();
   const googleAuthProvider = new firebase.auth.GoogleAuthProvider(); 
-
+/*
   database.ref().set({
     users: {
       user1: {
         blog: {
           post1: {
-            title: 'how to win at daily life',
+            title: 'win at daily life',
             body: 'just stuff I figured out while at home post-college'
           }
         }
       }
     }
   });
-
+*/
   export {firebase, googleAuthProvider, database as default};
 

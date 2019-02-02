@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {editPost, removePost} from '../actions/post';
+import {editPost, startRemovePost} from '../actions/post';
 
 export class EditPostPage extends React.Component {
     constructor(props) {
@@ -28,7 +28,7 @@ export class EditPostPage extends React.Component {
         this.props.history.push('/dashboard');
     };
     removePost = () => {
-        this.props.removePost();
+        this.props.startRemovePost(this.props.match.params.id);
         this.props.history.push('/dashboard');
     };
     render() {
@@ -64,7 +64,7 @@ export const EditPostPage = (props) => (
 
 const mapDispatchToProps = (dispatch, props) => ({
     editPost: (id, postUpdates) => dispatch(editPost(id, postUpdates)),
-    removePost: (id) => dispatch(removePost(props.match.params.id))
+    startRemovePost: (id) => dispatch(startRemovePost(id))
 });
 
 const mapStateToProps = (state, props) => ({

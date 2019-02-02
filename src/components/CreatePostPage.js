@@ -2,7 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import moment from 'moment';
-import {addPost} from '../actions/post';
+import {startAddPost} from '../actions/post';
 
 export class CreatePostPage extends React.Component {
     constructor(props) {
@@ -30,9 +30,9 @@ export class CreatePostPage extends React.Component {
         const post = {
             title: this.state.title,
             body: this.state.body,
-            createdAt: this.state.createdAt
+            createdAt: this.state.createdAt.valueOf()
         };
-        this.props.addPost(post);
+        this.props.startAddPost(post);
         this.props.history.push('/dashboard');
     };
 
@@ -59,7 +59,7 @@ export class CreatePostPage extends React.Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-    addPost: (post) => dispatch(addPost(post))
+    startAddPost: (post) => dispatch(startAddPost(post))
 });
 
 /*const mapDispatchToProps = (dispatch) => ({
