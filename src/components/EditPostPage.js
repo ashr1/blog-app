@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {editPost, startRemovePost} from '../actions/post';
+import {startEditPost, startRemovePost} from '../actions/post';
 
 export class EditPostPage extends React.Component {
     constructor(props) {
@@ -21,7 +21,7 @@ export class EditPostPage extends React.Component {
     };
     savePost = () => {
         console.log('post is saved');
-        this.props.editPost(this.props.match.params.id, {
+        this.props.startEditPost(this.props.match.params.id, {
             title: this.state.title,
             body: this.state.body
         });
@@ -63,7 +63,7 @@ export const EditPostPage = (props) => (
 );*/
 
 const mapDispatchToProps = (dispatch, props) => ({
-    editPost: (id, postUpdates) => dispatch(editPost(id, postUpdates)),
+    startEditPost: (id, postUpdates) => dispatch(startEditPost(id, postUpdates)),
     startRemovePost: (id) => dispatch(startRemovePost(id))
 });
 

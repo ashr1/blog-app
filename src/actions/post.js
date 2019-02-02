@@ -48,6 +48,15 @@ export const editPost = (id, postUpdates) => ({
     postUpdates
 });
 
+export const startEditPost = (id, updates) => {
+    return (dispatch, getState) => {
+        const uid = getState().auth.uid;
+        return database.ref(`users/${uid}/blog/${id}`).update(updates).then(() => {
+            dispatch(editPost(id,updates));
+        });
+    };
+};
+
 export const removePost = (id) => ({
     type: 'REMOVE_POST',
     id
