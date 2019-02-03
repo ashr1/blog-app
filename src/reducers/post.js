@@ -20,6 +20,8 @@ export default (state=postsReducerDefaultState, action) => {
         case 'REMOVE_POST':
             const notWantedPost = action.id;
             return state.filter((post) => post.id !== notWantedPost);
+        case 'SET_POSTS':
+            return action.posts;
         default:
             return state;
     }

@@ -1,11 +1,4 @@
 //import uuid from 'uuid';
-import database from '../firebase/firebase';
-
-export const addPost = (post) => ({
-    type: 'ADD_POST',
-    //id: uuid(),
-    post
-});
 /*
 database.ref().set({
     users: {
@@ -20,6 +13,14 @@ database.ref().set({
     }
   });
   */
+ 
+import database from '../firebase/firebase';
+
+export const addPost = (post) => ({
+    type: 'ADD_POST',
+    //id: uuid(),
+    post
+});
 
 export const startAddPost = (postData={}) => {
     return (dispatch, getState) => {
@@ -41,6 +42,26 @@ export const startAddPost = (postData={}) => {
         });
     };
 };  
+
+export const setPosts = (posts) => ({
+    type: 'SET_POSTS',
+    posts
+});
+
+export const startSetPosts = () => {
+    return (dispatch, getState) => {
+        const uid = getState().auth.uid;
+        return database.ref(`users/${uid}/blog`).once('value').then((snapshot) => {
+            const posts = [];
+            snapshot.forEach((childSnapshot) => {
+                const id = childSnapshot.key;
+                posts.push({id, ...childSnapshot.val()});
+            });
+            dispatch(setPosts(posts));
+        });
+        
+    };
+};
 
 export const editPost = (id, postUpdates) => ({
     type: 'EDIT_POST',
