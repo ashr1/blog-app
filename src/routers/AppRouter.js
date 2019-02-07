@@ -5,7 +5,8 @@ import DashboardPage from '../components/DashboardPage';
 import EditPostPage from '../components/EditPostPage';
 import CreatePostPage from '../components/CreatePostPage';
 import NotFoundPage from '../components/NotFoundPage';
-import LoginPage from '../components/LoginPage';    
+import LoginPage from '../components/LoginPage'; 
+import PostPage from '../components/PostPage';    
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
 
@@ -16,6 +17,7 @@ const AppRouter = () => (
         <div>
             <Switch>
                 <PublicRoute path="/" component={LoginPage} exact={true}/>
+                <Route path="/:userid/blog/:postid" component={PostPage}/>
                 <PrivateRoute path="/dashboard" component={DashboardPage}/>
                 <PrivateRoute path="/edit/:id" component={EditPostPage}/>
                 <PrivateRoute path="/create" component={CreatePostPage}/>
@@ -26,3 +28,5 @@ const AppRouter = () => (
 );
 
 export default AppRouter; 
+
+//<PublicRoute path="/:userid/blog/:postid" component={PostPage}/>

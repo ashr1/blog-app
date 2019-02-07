@@ -34,6 +34,7 @@ export class EditPostPage extends React.Component {
     render() {
         return (
             <div>
+                <Link to={`/${this.props.userId}/blog/${this.props.match.params.id}`}>Post viewable at</Link>
                 <p>Post readable at http://app.com/read/123abc</p>
                 <input
                     type="text"
@@ -68,7 +69,8 @@ const mapDispatchToProps = (dispatch, props) => ({
 });
 
 const mapStateToProps = (state, props) => ({
-    post: state.post.find((post) => post.id === props.match.params.id)
+    post: state.post.find((post) => post.id === props.match.params.id),
+    userId: state.auth.uid
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditPostPage);
